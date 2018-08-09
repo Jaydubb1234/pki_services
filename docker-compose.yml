@@ -1,0 +1,27 @@
+version: '3'
+services:
+  users:
+    build: './users'
+    volumes:
+      - ./users:/src
+    ports:
+      - "3001:4442"
+  posts:
+    build: './posts'
+    volumes:
+      - ./posts:/src
+    ports:
+      - "3002:4442"
+  # db:
+  #   image: mysql
+  #   ports:
+  #     - "3306:3306"
+  # nginx:
+  #   image: nginx:latest
+  #   ports:
+  #     - "8080:8080"
+  #   volumes:
+  #     - ./default.conf:/etc/nginx/conf.d/default.conf
+  #   depends_on:
+  #     - users
+      # - posts
