@@ -14,7 +14,6 @@ export class PostRouter {
   public getPosts(req: Request, res: Response): void {
     const { currentUserId, lastId } = req.body;
       let sqlQuery
-        console.log('lastId ', lastId)
         lastId ? 
           sqlQuery = `SELECT wp.post_content, wp.post_title, wp.ID as id, wp.comment_count, wp.post_date, wp.post_author, wp.post_modified,
             u.display_name 
@@ -43,7 +42,6 @@ export class PostRouter {
           ORDER BY post_date DESC
           LIMIT 10`
 
-      console.log('sqlQuery', sqlQuery)
 
       mysqlDb
         .then( (client) => {
@@ -77,7 +75,6 @@ export class PostRouter {
             client.query(sqlQuery, 
             (err, results, fields) =>{
                 if (err) return res.status(500).json({ err })
-                console.log(res)
                 return res.status(200).json(
                   {
                     code: res.statusCode,

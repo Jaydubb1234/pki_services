@@ -41,7 +41,6 @@ var UserRouter = /** @class */ (function () {
             client.query("SELECT * FROM wp_users WHERE user_nicename = ?", username, function (err, results, fields) {
                 if (err)
                     return res.status(500).json({ err: err });
-                console.log(res);
                 return res.status(200).json({
                     code: res.statusCode,
                     message: "OK",
@@ -91,7 +90,6 @@ var UserRouter = /** @class */ (function () {
             client.query('DELETE FROM wp_users WHERE user_nicename = ?', username, function (err, results, fields) {
                 if (err)
                     return res.status(500).json({ err: err });
-                console.log(res);
                 return res.status(200).json({
                     code: res.statusCode,
                     message: "OK",

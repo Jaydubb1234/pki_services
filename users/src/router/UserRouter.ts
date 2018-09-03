@@ -58,7 +58,6 @@ export class UserRouter {
             client.query(`SELECT * FROM wp_users WHERE user_nicename = ?`,username, 
             (err, results, fields) =>{
                 if (err) return res.status(500).json({ err })
-                console.log(res)
                 return res.status(200).json(
                   {
                     code: res.statusCode,
@@ -117,7 +116,6 @@ export class UserRouter {
             client.query('DELETE FROM wp_users WHERE user_nicename = ?',username, 
             (err, results, fields) =>{
                 if (err) return res.status(500).json({ err })
-                console.log(res)
                 return res.status(200).json(
                   {
                     code: res.statusCode,

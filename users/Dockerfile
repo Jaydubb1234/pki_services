@@ -1,7 +1,8 @@
 #FROM node:alpine
 FROM mhart/alpine-node:8 AS build-env
 WORKDIR /src
-COPY package.json /src/package.json
+#COPY package.json /src/package.json
+COPY . /src
 RUN yarn install
 COPY server.ts /src/server.ts
 

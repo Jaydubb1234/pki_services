@@ -12,12 +12,10 @@ var PostRouter = /** @class */ (function () {
     PostRouter.prototype.getPosts = function (req, res) {
         var _a = req.body, currentUserId = _a.currentUserId, lastId = _a.lastId;
         var sqlQuery;
-        console.log('lastId ', lastId);
         lastId ?
             sqlQuery = "SELECT wp.post_content, wp.post_title, wp.ID as id, wp.comment_count, wp.post_date, wp.post_author, wp.post_modified,\n            u.display_name \n          FROM wordpresstest.wp_posts as wp\n          INNER JOIN wordpresstest.wp_users as u ON u.ID = wp.post_author\n          WHERE post_status = 'publish'\n          AND post_type = 'post'\n          AND post_author \n          IN (SELECT leader_id \n          FROM wordpresstest.wp_bp_follow \n          WHERE follower_id = " + currentUserId + ")\n          AND wp.ID < " + lastId + "\n          ORDER BY post_date DESC\n          LIMIT 10"
             :
                 sqlQuery = "SELECT wp.post_content, wp.post_title, wp.ID as id, wp.comment_count, wp.post_date, wp.post_author, wp.post_modified,\n            u.display_name \n          FROM wordpresstest.wp_posts as wp\n          INNER JOIN wordpresstest.wp_users as u ON u.ID = wp.post_author\n          WHERE post_status = 'publish'\n          AND post_type = 'post'\n          AND post_author \n          IN (SELECT leader_id \n          FROM wordpresstest.wp_bp_follow \n          WHERE follower_id = " + currentUserId + ")\n          ORDER BY post_date DESC\n          LIMIT 10";
-        console.log('sqlQuery', sqlQuery);
         db_1.mysqlDb
             .then(function (client) {
             client.query(sqlQuery, function (err, results, fields) {
@@ -47,7 +45,6 @@ var PostRouter = /** @class */ (function () {
             client.query(sqlQuery, function (err, results, fields) {
                 if (err)
                     return res.status(500).json({ err: err });
-                console.log(res);
                 return res.status(200).json({
                     code: res.statusCode,
                     message: "OK",
