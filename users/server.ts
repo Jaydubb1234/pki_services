@@ -6,6 +6,7 @@ import * as express from 'express';
 import * as helmet from 'helmet';
 import * as logger from 'morgan';
 import { UserRouter } from './src/router/UserRouter';
+import config from './config'
 
 const userRouter = new UserRouter();
 
@@ -35,7 +36,7 @@ class Server {
 
     // cors
     this.app.use((req, res, next) => {
-      res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+      res.header('Access-Control-Allow-Origin', `${config['baseUrl']}:3000`);
       res.header(
         'Access-Control-Allow-Methods',
         'GET, POST, PUT, DELETE, OPTIONS',

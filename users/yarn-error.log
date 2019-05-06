@@ -1,17 +1,20 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn server
+  /usr/bin/node /usr/local/share/yarn/bin/yarn.js server
 
 PATH: 
-  /Applications/XAMPP/xamppfiles/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/XAMPP/xamppfiles/bin
+  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 Yarn version: 
-  1.5.1
+  1.9.4
 
 Node version: 
-  9.8.0
+  8.11.4
 
 Platform: 
-  darwin x64
+  linux x64
+
+Trace: 
+  Error: EIO: i/o error, scandir '/src'
 
 npm manifest: 
   {
@@ -2427,18 +2430,3 @@ Lockfile:
   yallist@^3.0.0, yallist@^3.0.2:
     version "3.0.2"
     resolved "https://registry.yarnpkg.com/yallist/-/yallist-3.0.2.tgz#8452b4bb7e83c7c188d8041c1a837c773d6d8bb9"
-
-Trace: 
-  Error: Command failed.
-  Exit code: 2
-  Command: sh
-  Arguments: -c tsc && nodemon ./build/index.js
-  Directory: /usr/local/var/www/htdocs/projects/pki_services/users
-  Output:
-  
-      at ProcessTermError.MessageError (/Users/unit1/.config/yarn/global/node_modules/yarn/lib/cli.js:186:110)
-      at new ProcessTermError (/Users/unit1/.config/yarn/global/node_modules/yarn/lib/cli.js:226:113)
-      at ChildProcess.<anonymous> (/Users/unit1/.config/yarn/global/node_modules/yarn/lib/cli.js:30281:17)
-      at ChildProcess.emit (events.js:180:13)
-      at maybeClose (internal/child_process.js:936:16)
-      at Process.ChildProcess._handle.onexit (internal/child_process.js:220:5)

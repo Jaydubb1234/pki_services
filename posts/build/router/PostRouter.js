@@ -20,8 +20,9 @@ var PostRouter = /** @class */ (function () {
     };
     //get single post by author
     PostRouter.prototype.getPost = function (req, res) {
-        var postAuthorId = req.params.postAuthorId;
-        var sqlQuery = "SELECT * FROM wordpresstest.wp_posts WHERE post_author = " + postAuthorId;
+        var currentUserId = req.params.currentUserId;
+        console.log('req ', req.params);
+        var sqlQuery = "SELECT * \n      FROM wordpresstest.wp_posts \n      WHERE post_author = '" + currentUserId + "'\n      AND post_status = 'publish'\n      AND post_type = 'post' \n      ORDER BY ID DESC";
         queryToMysql(res, sqlQuery);
     };
     // get all of the posts in the database

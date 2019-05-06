@@ -5,8 +5,10 @@ dotenv.config();
 
 const config = {
   dev: {
+    baseUrl: "http://localhost"
   },
   production: {
+    baseUrl: ""
   },
   mysqlUser: process.env.MYSQL_USER,
   mysqlPassword: process.env.MYSQL_PASSWORD,

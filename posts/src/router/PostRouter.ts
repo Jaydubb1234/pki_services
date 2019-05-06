@@ -47,8 +47,14 @@ export class PostRouter {
 
   //get single post by author
   public getPost(req: Request, res: Response): void {
-    const { postAuthorId } = req.params
-    const sqlQuery = `SELECT * FROM wordpresstest.wp_posts WHERE post_author = ${postAuthorId}`
+    const { currentUserId } = req.params
+    console.log('req ',req.params)
+    const sqlQuery = `SELECT * 
+      FROM wordpresstest.wp_posts 
+      WHERE post_author = '${currentUserId}'
+      AND post_status = 'publish'
+      AND post_type = 'post' 
+      ORDER BY ID DESC`
     queryToMysql(res,sqlQuery)
   }
 
