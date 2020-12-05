@@ -9,9 +9,12 @@ git clone git@github.com:iamclaytonray/tes.git
 ```
 
 ```
-yarn install
+npm install
 ```
 
 ```
-yarn server
+npm start
 ```
+
+# to run
+`npm test`

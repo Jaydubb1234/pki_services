@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.mysqlDb = void 0;
 var mysql = require("mysql-ssh");
 var config_1 = require("../../config");
 exports.mysqlDb = mysql.connect({

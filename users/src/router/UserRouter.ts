@@ -15,15 +15,15 @@ export class UserRouter {
         let sqlQuery
         lastId ? 
           sqlQuery = `SELECT *
-          FROM wordpresstest.wp_users as u
-          INNER JOIN wordpresstest.wp_signups as su ON u.user_email = su.user_email
+          FROM wordpress.wp_users as u
+          INNER JOIN wordpress.wp_signups as su ON u.user_email = su.user_email
           WHERE su.active = 1 AND u.ID < ${lastId}
           ORDER BY su.activated DESC
           LIMIT 10` 
         :
           sqlQuery = `SELECT *
-          FROM wordpresstest.wp_users as u
-          INNER JOIN wordpresstest.wp_signups as su ON u.user_email = su.user_email
+          FROM wordpress.wp_users as u
+          INNER JOIN wordpress.wp_signups as su ON u.user_email = su.user_email
           WHERE su.active = 1
           ORDER BY su.activated DESC
           LIMIT 10`
@@ -137,7 +137,7 @@ export class UserRouter {
 
   // set up our routes
   public routes() {
-    this.router.post('/', this.getUsers);
+    this.router.get('/', this.getUsers);
     this.router.get('/:username', this.getUser);
     // this.router.post('/', this.create);
     // this.router.put('/:username', this.update);

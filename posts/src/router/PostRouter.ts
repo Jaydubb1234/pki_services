@@ -17,13 +17,13 @@ export class PostRouter {
       lastId ? 
         sqlQuery = `SELECT wp.post_content, wp.post_title, wp.ID as id, wp.comment_count, wp.post_date, wp.post_author, wp.post_modified,
           u.display_name 
-          FROM wordpresstest.wp_posts as wp
-          INNER JOIN wordpresstest.wp_users as u ON u.ID = wp.post_author
+          FROM wordpress.wp_posts as wp
+          INNER JOIN wordpress.wp_users as u ON u.ID = wp.post_author
           WHERE post_status = 'publish'
           AND post_type = 'post'
           AND post_author 
           IN (SELECT leader_id 
-          FROM wordpresstest.wp_bp_follow 
+          FROM wordpress.wp_bp_follow 
           WHERE follower_id = ${currentUserId})
           AND wp.ID < ${lastId}
           ORDER BY post_date DESC
@@ -31,13 +31,13 @@ export class PostRouter {
       :
         sqlQuery = `SELECT wp.post_content, wp.post_title, wp.ID as id, wp.comment_count, wp.post_date, wp.post_author, wp.post_modified,
           u.display_name 
-          FROM wordpresstest.wp_posts as wp
-          INNER JOIN wordpresstest.wp_users as u ON u.ID = wp.post_author
+          FROM wordpress.wp_posts as wp
+          INNER JOIN wordpress.wp_users as u ON u.ID = wp.post_author
           WHERE post_status = 'publish'
           AND post_type = 'post'
           AND post_author 
           IN (SELECT leader_id 
-          FROM wordpresstest.wp_bp_follow 
+          FROM wordpress.wp_bp_follow 
           WHERE follower_id = ${currentUserId})
           ORDER BY post_date DESC
           LIMIT 10`
@@ -50,7 +50,7 @@ export class PostRouter {
     const { currentUserId } = req.params
     console.log('req ',req.params)
     const sqlQuery = `SELECT * 
-      FROM wordpresstest.wp_posts 
+      FROM wordpress.wp_posts 
       WHERE post_author = '${currentUserId}'
       AND post_status = 'publish'
       AND post_type = 'post' 
@@ -87,7 +87,7 @@ export class PostRouter {
     const { body, creationDate } = req.body.postContent;
     const { currentUserId } = req.body
 
-    const sqlQuery = `INSERT INTO wordpresstest.wp_posts
+    const sqlQuery = `INSERT INTO wordpress.wp_posts
       (
         post_author,
         post_date,
@@ -192,7 +192,7 @@ export class PostRouter {
   // }
 
   public routes() {
-    this.router.post('/', this.getPosts);
+    this.router.get('/', this.getPosts);
     this.router.get('/:currentUserId', this.getPost);
     this.router.post('/create', this.createPost);
     // this.router.put('/:slug', this.update);

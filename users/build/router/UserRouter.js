@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.UserRouter = void 0;
 var express_1 = require("express");
 var db_1 = require("../config/db");
 //import User from '../models/User';
@@ -12,9 +13,9 @@ var UserRouter = /** @class */ (function () {
         var lastId = req.body.lastId;
         var sqlQuery;
         lastId ?
-            sqlQuery = "SELECT *\n          FROM wordpresstest.wp_users as u\n          INNER JOIN wordpresstest.wp_signups as su ON u.user_email = su.user_email\n          WHERE su.active = 1 AND u.ID < " + lastId + "\n          ORDER BY su.activated DESC\n          LIMIT 10"
+            sqlQuery = "SELECT *\n          FROM wordpress.wp_users as u\n          INNER JOIN wordpress.wp_signups as su ON u.user_email = su.user_email\n          WHERE su.active = 1 AND u.ID < " + lastId + "\n          ORDER BY su.activated DESC\n          LIMIT 10"
             :
-                sqlQuery = "SELECT *\n          FROM wordpresstest.wp_users as u\n          INNER JOIN wordpresstest.wp_signups as su ON u.user_email = su.user_email\n          WHERE su.active = 1\n          ORDER BY su.activated DESC\n          LIMIT 10";
+                sqlQuery = "SELECT *\n          FROM wordpress.wp_users as u\n          INNER JOIN wordpress.wp_signups as su ON u.user_email = su.user_email\n          WHERE su.active = 1\n          ORDER BY su.activated DESC\n          LIMIT 10";
         db_1.mysqlDb
             .then(function (client) {
             client.query(sqlQuery, function (err, results, fields) {
@@ -108,7 +109,7 @@ var UserRouter = /** @class */ (function () {
     };
     // set up our routes
     UserRouter.prototype.routes = function () {
-        this.router.post('/', this.getUsers);
+        this.router.get('/', this.getUsers);
         this.router.get('/:username', this.getUser);
         // this.router.post('/', this.create);
         // this.router.put('/:username', this.update);

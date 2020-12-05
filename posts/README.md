@@ -15,3 +15,6 @@ yarn install
 ```
 yarn server
 ```
+
+# to run
+`npm test`
